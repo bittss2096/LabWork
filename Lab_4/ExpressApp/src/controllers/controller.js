@@ -14,36 +14,43 @@ exports.getMovies = async(req,res)=>{
 
          // customizing functions with details //
 
-         const allFilms = await Movie.find(); // Renamed variable to allFilms
-
-         const { name, category, releaseYear } = req.query; // Renamed query parameters
- 
-         let moviesList = allFilms; // Renamed finalMovies to moviesList
-
-
-         // Adding Search by NAME Module using RegExp for case-insensitive matching
-        if (name) {
-           const nameRegex = new RegExp(name, 'i'); // 'i' flag for case-insensitive search
+         const allFilms = await Movie.find(); // Fetch all movies
+         console.log("All movies:", allFilms); // Log the fetched data
+         
+         const { name, category, releaseYear } = req.query; // Extract query parameters
+         console.log("Query parameters:", req.query); // Log the query parameters
+         
+         let moviesList = allFilms; // Copy the list of movies
+         
+         // Search by NAME using RegExp for case-insensitive matching
+         if (name) {
+           const nameRegex = new RegExp(name, 'i');
            moviesList = moviesList.filter((film) => nameRegex.test(film.title));
+           console.log("Filtered by name:", moviesList); // Log after filtering by name
          }
-
-       
-         //Adding Filter by CATEGORY module using RegExp
-        if (category) {
-          // const categoryRegex = new RegExp(category, 'i'); // Case-insensitive RegExp for category matching
-           const categoryRegex = new RegExp(`\\b${category}\\b`, 'i'); // Case-insensitive exact word match
-          moviesList = moviesList.filter((film) =>
-         film.genres.some((genre) => categoryRegex.test(genre)) // Check if any category matches the pattern
+         
+         // Filter by CATEGORY using exact word match
+         if (category) {
+           const categoryRegex = new RegExp(`\\b${category}\\b`, 'i');
+           moviesList = moviesList.filter((film) =>
+             film.genres.some((genre) => categoryRegex.test(genre))
            );
-          }       
-          
-          //Adding Filter by RELEASE YEAR with strict comparison
-        if (releaseYear) {
-           moviesList = moviesList.filter((film) => film.year == releaseYear); // Direct comparison
+           console.log("Filtered by category:", moviesList); // Log after filtering by category
          }
-  
-        // Returning the filtered list of movies and their count
-        res.json(moviesList);
+         
+         // Filter by RELEASE YEAR with strict comparison
+         if (releaseYear) {
+           moviesList = moviesList.filter((film) => film.year == releaseYear);
+           console.log("Filtered by release year:", moviesList); // Log after filtering by year
+         }
+         
+         // If no movies match, log the result
+         if (moviesList.length === 0) {
+           console.log("No movies match the filter criteria");
+         }
+         
+         // Return the filtered movie list and count
+         res.json(moviesList);
 
     }
     catch(e){
