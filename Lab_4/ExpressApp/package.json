@@ -1,0 +1,33 @@
+{
+  "name": "expressapp",
+  "version": "1.0.0",
+  "description": "This is my first Express App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shiv-coder/MDEV1004WeeklyLessons.git"
+  },
+  "author": "Shivali Dhaka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shiv-coder/MDEV1004WeeklyLessons/issues"
+  },
+  "homepage": "https://github.com/shiv-coder/MDEV1004WeeklyLessons#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.6.3",
+    "nodemon": "^3.1.6",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "session": "^0.1.0"
+  }
+}
