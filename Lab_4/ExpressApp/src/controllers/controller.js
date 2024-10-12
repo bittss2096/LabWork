@@ -28,6 +28,13 @@ exports.getMovies = async(req,res)=>{
          }
 
        
+         //Adding Filter by CATEGORY module using RegExp
+        if (category) {
+           const categoryRegex = new RegExp(category, 'i'); // Case-insensitive RegExp for category matching
+          moviesList = moviesList.filter((film) =>
+         film.genres.some((genre) => categoryRegex.test(genre)) // Check if any category matches the pattern
+           );
+          }         
 
     }
     catch(e){
