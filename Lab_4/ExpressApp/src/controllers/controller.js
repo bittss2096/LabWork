@@ -23,10 +23,15 @@ exports.getMovies = async(req,res)=>{
          let moviesList = allFilms; // Copy the list of movies
          
          // Search by NAME using RegExp for case-insensitive matching
-         if (name) {
+        if (name != " " && name!="") {
            const nameRegex = new RegExp(name, 'i');
            moviesList = moviesList.filter((film) => nameRegex.test(film.title));
            console.log("Filtered by name:", moviesList); // Log after filtering by name
+         }
+       
+         else
+         {
+            console.log("empty filed"); // empty field
          }
          
          // Filter by CATEGORY using exact word match
