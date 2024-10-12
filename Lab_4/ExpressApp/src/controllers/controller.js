@@ -20,6 +20,13 @@ exports.getMovies = async(req,res)=>{
  
          let moviesList = allFilms; // Renamed finalMovies to moviesList
 
+
+         // Adding Search by NAME Module using RegExp for case-insensitive matching
+        if (name) {
+           const nameRegex = new RegExp(name, 'i'); // 'i' flag for case-insensitive search
+           moviesList = moviesList.filter((film) => nameRegex.test(film.title));
+         }
+
        
 
     }
