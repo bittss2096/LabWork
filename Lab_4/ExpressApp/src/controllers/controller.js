@@ -1,11 +1,13 @@
 const Movie = require('../models/Movies');
 const fs =require('fs');
 
-//Function to get all the files
+//Function 
 exports.getMovies = async(req,res)=>{
     try{
         const movies = await Movie.find();
          res.status(200).json(movies);
+
+         // adding the new function in it //
     }
     catch(e){
             console.error(e);
