@@ -12,7 +12,13 @@ exports.getMovies = async(req,res)=>{
 
          */
 
-         // adding the new function in it //
+         // customizing functions with details //
+
+         const allFilms = await Movie.find(); // Renamed variable to allFilms
+
+         const { name, category, releaseYear } = req.query; // Renamed query parameters
+ 
+         let moviesList = allFilms; // Renamed finalMovies to moviesList
 
        
 
