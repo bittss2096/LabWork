@@ -34,7 +34,15 @@ exports.getMovies = async(req,res)=>{
           moviesList = moviesList.filter((film) =>
          film.genres.some((genre) => categoryRegex.test(genre)) // Check if any category matches the pattern
            );
-          }         
+          }       
+          
+          //Adding Filter by RELEASE YEAR with strict comparison
+        if (releaseYear) {
+           moviesList = moviesList.filter((film) => film.year == releaseYear); // Direct comparison
+         }
+  
+        // Returning the filtered list of movies and their count
+        res.json(moviesList);
 
     }
     catch(e){
