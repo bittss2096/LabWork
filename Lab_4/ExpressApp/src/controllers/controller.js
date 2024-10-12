@@ -22,7 +22,7 @@ exports.getMovies = async(req,res)=>{
          
          let moviesList = allFilms; // Copy the list of movies
          
-         // Search by NAME using RegExp for case-insensitive matching
+         // customized the title query 
         if (name != " " && name!="") {
            const nameRegex = new RegExp(name, 'i');
            moviesList = moviesList.filter((film) => nameRegex.test(film.title));
@@ -54,6 +54,8 @@ exports.getMovies = async(req,res)=>{
            console.log("No movies match the filter criteria");
          }
          
+
+         // final updated code
          // Return the filtered movie list and count
          res.json(moviesList);
 
