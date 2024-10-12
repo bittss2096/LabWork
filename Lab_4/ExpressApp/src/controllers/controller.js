@@ -4,10 +4,18 @@ const fs =require('fs');
 //Function 
 exports.getMovies = async(req,res)=>{
     try{
+
+        // commenting the original code //
+        /*
         const movies = await Movie.find();
          res.status(200).json(movies);
 
+         */
+
          // adding the new function in it //
+
+       
+
     }
     catch(e){
             console.error(e);
